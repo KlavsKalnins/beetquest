@@ -40,6 +40,7 @@ export default function Home() {
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="insert..."
               className="w-full h-56 border border-indigo-300 rounded px-3 py-2 mr-2 text-black bg-slate-100"
+              autoComplete="off"
             />
             <button
               onClick={handleClick}
