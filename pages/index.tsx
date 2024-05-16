@@ -49,7 +49,7 @@ export default function Home() {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="insert..."
-              className="w-full h-56 border border-indigo-300 rounded px-3 py-2 mr-2 text-black bg-slate-100"
+              className="w-full h-56 border border-indigo-300 rounded px-3 py-2 mr-2 text-white bg-slate-800"
               autoComplete="off"
             />
             <button
