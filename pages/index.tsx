@@ -5,17 +5,30 @@ import { useState } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [isUnlocked, setUnlocked] = useState(false);
+  const [showWrongKey, setShowWrongKey] = useState(false);
   const secret = "key";
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
 
   const handleClick = () => {
     if (inputValue.trim() == secret) {
-      console.log('unlocked');
       setUnlocked(true);
+      setShowWrongKey(false);
       return;
     }
-    console.log("wrong");
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    delayedFunction();
+  };
+
+  const delayedFunction = () => {
+    setShowWrongKey(true);
+    const id = setTimeout(() => {
+      setShowWrongKey(false);
+    }, 3000);
+    setTimeoutId(id);
   };
 
   return (
@@ -26,10 +39,7 @@ export default function Home() {
         {isUnlocked ? (
           <div className="w-full">
             <video controls autoPlay width="1920" height="1080">
-              <source
-                src="video.mp4"
-                type="video/mp4"
-              />
+              <source src="video.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
@@ -48,6 +58,7 @@ export default function Home() {
             >
               Try your luck!
             </button>
+            {showWrongKey && <p className="text-red-500">Wrong guess</p>}
           </>
         )}
       </div>
