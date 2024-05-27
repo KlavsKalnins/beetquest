@@ -1,6 +1,8 @@
 import { Inter } from "next/font/google";
 import GlitchEffect from "../components/GlitchEffect";
 import { useState } from "react";
+import AudioPlayer from "@/components/AudioPlayer";
+import { useAudio } from "@/context/AudioContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,6 +12,7 @@ export default function Home() {
   const [showWrongKey, setShowWrongKey] = useState(false);
   const secret = process.env.SECRET_KEY;// "ABCRKSPO";
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
+  const { isPlaying, togglePlayback } = useAudio();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value.toUpperCase().slice(0, 8));
@@ -19,6 +22,7 @@ export default function Home() {
     if (inputValue.trim() == secret) {
       setUnlocked(true);
       setShowWrongKey(false);
+      togglePlayback();
       return;
     }
     if (timeoutId) {
@@ -40,10 +44,12 @@ export default function Home() {
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 tracking`}
     >
+      <AudioPlayer />
       <div className="w-screen h-screen flex justify-center items-center">
         {isUnlocked ? (
-          <div className="w-full flex justify-center">
-            <video controls autoPlay width="1920" height="1080">
+          <div className="absolute w-screen h-screen flex justify-center">
+            {/* width="1920" height="1080" */}
+            <video controls autoPlay>
               <source src="video.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
@@ -65,9 +71,13 @@ export default function Home() {
               <div className="bg-green-400/0 w-full h-20 flex justify-center items-center">
                 <button
                   onClick={handleClick}
-                  className={`${showWrongKey ? 'bg-red-400' : 'bg-green-400'} h-full px-10 hover:brightness-90 text-white font-bold py-2`}
+                  className={`${
+                    showWrongKey ? "bg-red-400" : "bg-green-400"
+                  } h-full px-10 hover:brightness-90 text-white font-bold py-2`}
                 >
-                  <p className="text-black">{showWrongKey ? 'WRONG' : 'ENTER'}</p>
+                  <p className="text-black">
+                    {showWrongKey ? "WRONG" : "ENTER"}
+                  </p>
                 </button>
               </div>
             </div>
