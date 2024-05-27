@@ -1,8 +1,9 @@
+import { useAudio } from '@/context/AudioContext';
 import { useEffect, useRef, useState } from 'react';
 
 const AudioPlayer: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const { isPlaying, togglePlayback } = useAudio();
 
   useEffect(() => {
     const audioElement = audioRef.current;
@@ -17,7 +18,7 @@ const AudioPlayer: React.FC = () => {
   }, [isPlaying]);
 
   const handleClick = () => {
-    setIsPlaying(prev => !prev);
+    togglePlayback();
   };
 
   return (

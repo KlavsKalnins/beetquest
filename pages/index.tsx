@@ -11,7 +11,7 @@ export default function Home() {
   const [showWrongKey, setShowWrongKey] = useState(false);
   const secret = process.env.SECRET_KEY;// "ABCRKSPO";
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
-  const { isPlaying, togglePlayback } = useAudio();
+  const { stopPlaying } = useAudio();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value.toUpperCase().trim().slice(0, 8));
@@ -21,7 +21,7 @@ export default function Home() {
     if (inputValue.trim() == secret) {
       setUnlocked(true);
       setShowWrongKey(false);
-      togglePlayback();
+      stopPlaying();
       return;
     }
     if (timeoutId) {
