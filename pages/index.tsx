@@ -14,7 +14,7 @@ export default function Home() {
   const { isPlaying, togglePlayback } = useAudio();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value.toUpperCase().slice(0, 8));
+    setInputValue(e.target.value.toUpperCase().trim().slice(0, 8));
   };
 
   const handleClick = () => {
@@ -52,7 +52,7 @@ export default function Home() {
           </div>
         ) : (
           <>
-            <div className="relative w-full xs:w-full xl:w-1/2 h-1/5 bg-red-500/0 mb-10 flex flex-col items-center gap-10 z-0">
+            <div className="relative w-full xs:w-full xl:w-full h-1/5 bg-red-500/0 mb-10 flex flex-col items-center gap-10 z-0">
               <GlitchEffect inputValue={inputValue} />
               <div className="absolute w-full h-full bg-green-800/0">
                 <div className="absolute -bottom-10 w-full h-10 bg-red-400/0 flex justify-center items-center">
@@ -70,7 +70,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="absolute w-full xs:w-full xl:w-1/2 h-1/5 bg-red-500/0 mb-10 flex flex-col gap-10">
+            <div className="absolute w-full xs:w-full xl:w-full h-1/5 bg-red-500/0 mb-10 flex flex-col gap-10">
               <input
                 className="w-full h-full opacity-0 relative z-10 text-black text-8xl text-center"
                 type="text"
