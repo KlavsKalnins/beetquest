@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import GlitchEffect from "../components/GlitchEffect";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useAudio } from "@/context/AudioContext";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -12,6 +12,7 @@ export default function Home() {
   const secret = process.env.SECRET_KEY; // "ABCRKSPO";
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
   const { stopPlaying } = useAudio();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value.toUpperCase().trim().slice(0, 8));
@@ -22,6 +23,8 @@ export default function Home() {
       setUnlocked(true);
       setShowWrongKey(false);
       stopPlaying();
+      // Focus on a non-input element to close the keyboard
+      inputRef.current?.blur();
       return;
     }
     if (timeoutId) {
@@ -78,11 +81,12 @@ export default function Home() {
 
             <div className="absolute w-full xs:w-full xl:w-full h-1/5 bg-red-500/0 mb-10 flex flex-col gap-10">
               <input
+                ref={inputRef}
                 className="w-full h-full opacity-0 relative z-10 text-black text-8xl text-center"
                 type="text"
                 value={inputValue}
                 onChange={handleInputChange}
-                onKeyDown={handleKeyDown} // Added onKeyDown event listener
+                onKeyDown={handleKeyDown}
                 placeholder=""
               />
             </div>
