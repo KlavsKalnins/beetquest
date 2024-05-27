@@ -22,8 +22,7 @@ export const AudioProvider: React.FC<{ children: ReactNode }> = ({
   const [isPlaying, setIsPlaying] = useState(false);
 
   const togglePlayback = () => {
-    setIsPlaying(prev => !prev);
-    // setIsPlaying((prev) => false);
+    setIsPlaying((prev) => !prev);
   };
   const stopPlaying = () => {
     setIsPlaying(false);

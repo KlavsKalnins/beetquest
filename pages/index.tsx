@@ -9,7 +9,7 @@ export default function Home() {
   const [inputValue, setInputValue] = useState("");
   const [isUnlocked, setUnlocked] = useState(false);
   const [showWrongKey, setShowWrongKey] = useState(false);
-  const secret = process.env.SECRET_KEY;// "ABCRKSPO";
+  const secret = process.env.SECRET_KEY; // "ABCRKSPO";
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
   const { stopPlaying } = useAudio();
 

@@ -28,9 +28,9 @@ const GlitchEffect: React.FC<Props> = ({ inputValue }) => {
               {/* Render the character */}
               {char == " " ? (
                 <span className="char opacity-0">A</span>
-              ) :
-              <span className="char">{char}</span>
-              }
+              ) : (
+                <span className="char">{char}</span>
+              )}
               {/* Render the green line */}
               <div className="absolute bottom-0 left-0 w-full h-1.5 bg-green-500"></div>
             </div>
