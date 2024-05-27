@@ -1,28 +1,35 @@
-import { useEffect, useRef } from 'react';
-import { useAudio } from '../context/AudioContext';
+import { useEffect, useRef, useState } from 'react';
 
 const AudioPlayer: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const { isPlaying } = useAudio();
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const audioElement = audioRef.current;
-    if (audioElement) {
-      if (isPlaying) {
-        audioElement.play().catch(error => {
-          console.log('Autoplay prevented:', error);
-        });
-      } else {
-        audioElement.pause();
-      }
+    if (audioElement && isPlaying) {
+      audioElement.play().catch(error => {
+        console.log('Autoplay prevented:', error);
+      });
+    }
+    if (audioElement && !isPlaying) {
+      audioElement.pause();
     }
   }, [isPlaying]);
 
+  const handleClick = () => {
+    setIsPlaying(prev => !prev);
+  };
+
   return (
-    <audio ref={audioRef} loop>
-      <source src="/Dystopia_Music_DocTheme.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
+    <div>
+      <audio ref={audioRef} loop>
+        <source src="/Dystopia_Music_DocTheme.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+      <button onClick={handleClick} className='absolute left-2 top-2 opacity-25'>
+        {isPlaying ? 'Pause Music' : 'Play Music'}
+      </button>
+    </div>
   );
 };
 
