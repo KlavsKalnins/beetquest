@@ -16,7 +16,6 @@ export default function Home() {
   };
 
   const handleClick = () => {
-    console.log(secret);
     if (inputValue.trim() == secret) {
       setUnlocked(true);
       setShowWrongKey(false);
