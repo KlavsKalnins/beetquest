@@ -26,7 +26,7 @@ const AudioPlayer: React.FC = () => {
         <source src="/Dystopia_Music_DocTheme.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
-      <button onClick={handleClick} className='absolute left-2 top-2 opacity-25'>
+      <button onClick={handleClick} className='absolute left-2 top-2 opacity-10'>
         {isPlaying ? 'Pause Music' : 'Play Music'}
       </button>
     </div>
