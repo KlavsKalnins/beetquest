@@ -49,7 +49,7 @@ export default function Home() {
         {isUnlocked ? (
           <div className="absolute w-screen h-screen flex justify-center">
             {/* width="1920" height="1080" */}
-            <video controls autoPlay>
+            <video autoPlay>
               <source src="video.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
