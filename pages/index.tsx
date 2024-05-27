@@ -30,6 +30,12 @@ export default function Home() {
     delayedFunction();
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleClick();
+    }
+  };
+
   const delayedFunction = () => {
     setShowWrongKey(true);
     setInputValue("");
@@ -76,6 +82,7 @@ export default function Home() {
                 type="text"
                 value={inputValue}
                 onChange={handleInputChange}
+                onKeyDown={handleKeyDown} // Added onKeyDown event listener
                 placeholder=""
               />
             </div>
