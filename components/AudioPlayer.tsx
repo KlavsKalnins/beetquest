@@ -20,7 +20,7 @@ const AudioPlayer: React.FC = () => {
 
   return (
     <audio ref={audioRef} loop>
-      <source src="/Dystopia_Music_DocTheme.wav" type="audio/mpeg" />
+      <source src="/Dystopia_Music_DocTheme.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
   );
