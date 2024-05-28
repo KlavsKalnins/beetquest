@@ -54,10 +54,21 @@ export default function Home() {
         {isUnlocked ? (
           <div className="absolute w-screen h-screen flex justify-center">
             {/* width="1920" height="1080" */}
-            <video autoPlay>
-              <source src="video.mp4" type="video/mp4" />
+            {/* https://videos.pexels.com/video-files/5342194/5342194-hd_1920_1080_30fps.mp4 */}
+            {/* https://drive.google.com/file/d/1H0tBz0slCh3dLQgpgZ1J2oSFiBmZYSYq/view?usp=sharing */}
+            {/* <video autoPlay>
+              <source src="https://videos.pexels.com/video-files/5342194/5342194-hd_1920_1080_30fps.mp4" type="video/mp4" />
               Your browser does not support the video tag.
-            </video>
+            </video> */}
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://1drv.ms/v/s!Au-nTACYAwv4hcdTAnZbUby9j9-HSg?e=l7T8QV?autoplay=1"
+              title="video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
+              allowFullScreen
+            ></iframe>
           </div>
         ) : (
           <>
