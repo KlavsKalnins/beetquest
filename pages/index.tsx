@@ -56,11 +56,11 @@ export default function Home() {
             {/* width="1920" height="1080" */}
             {/* https://videos.pexels.com/video-files/5342194/5342194-hd_1920_1080_30fps.mp4 */}
             {/* https://drive.google.com/file/d/1H0tBz0slCh3dLQgpgZ1J2oSFiBmZYSYq/view?usp=sharing */}
-            {/* <video autoPlay>
-              <source src="dystopiavideo.mp4" type="video/mp4" />
+            <video autoPlay>
+              <source src="youtube_format.mp4" type="video/mp4" />
               Your browser does not support the video tag.
-            </video> */}
-            <iframe
+            </video>
+            {/* <iframe
               width="100%"
               height="100%"
               src="https://1drv.ms/v/s!Au-nTACYAwv4hcdTAnZbUby9j9-HSg?e=l7T8QV?autoplay=1"
@@ -68,7 +68,7 @@ export default function Home() {
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
               allowFullScreen
-            ></iframe>
+            ></iframe> */}
           </div>
         ) : (
           <>
