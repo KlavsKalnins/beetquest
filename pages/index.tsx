@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [inputValue, setInputValue] = useState("");
-  const [isUnlocked, setUnlocked] = useState(true);
+  const [isUnlocked, setUnlocked] = useState(false);
   const [showWrongKey, setShowWrongKey] = useState(false);
   const secret = process.env.SECRET_KEY; // "ABCRKSPO";
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
@@ -23,8 +23,10 @@ export default function Home() {
       setUnlocked(true);
       setShowWrongKey(false);
       stopPlaying();
-      // Focus on a non-input element to close the keyboard
       inputRef.current?.blur();
+      setTimeout(() => {
+        setBlackoutVisible(1);
+      }, 4000);
       return;
     }
     if (timeoutId) {
@@ -48,27 +50,32 @@ export default function Home() {
     setTimeoutId(id);
   };
 
+  const [isBlackoutVisisble, setBlackoutVisible] = useState(0);
+
   return (
     <main className={`flex min-h-screen flex-col items-center justify-between`}>
       <div className="w-screen h-screen flex justify-center items-center">
         {isUnlocked ? (
-          <div className="absolute w-screen h-screen flex justify-center">
+          <div className="relative w-screen h-screen flex justify-center">
             {/* width="1920" height="1080" */}
             {/* https://videos.pexels.com/video-files/5342194/5342194-hd_1920_1080_30fps.mp4 */}
             {/* https://drive.google.com/file/d/1H0tBz0slCh3dLQgpgZ1J2oSFiBmZYSYq/view?usp=sharing */}
-            <video autoPlay>
+            {/* <video autoPlay>
               <source src="youtube_format.mp4" type="video/mp4" />
               Your browser does not support the video tag.
-            </video>
-            {/* <iframe
+            </video> */}
+            <iframe
+              className="absolute z-20"
+              style={{ opacity: isBlackoutVisisble }}
               width="100%"
               height="100%"
-              src="https://1drv.ms/v/s!Au-nTACYAwv4hcdTAnZbUby9j9-HSg?e=l7T8QV?autoplay=1"
+              src="https://www.youtube.com/embed/DE0WiI4oTAM?autoplay=1&showinfo=0&controls=0&autohide=1"
               title="video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
               allowFullScreen
-            ></iframe> */}
+            ></iframe>
+            <div className="absolute z-20 w-screen h-screen bg-red-500/0"></div>
           </div>
         ) : (
           <>
