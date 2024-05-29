@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [inputValue, setInputValue] = useState("");
-  const [isUnlocked, setUnlocked] = useState(false);
+  const [isUnlocked, setUnlocked] = useState(true);
   const [showWrongKey, setShowWrongKey] = useState(false);
   const secret = process.env.SECRET_KEY; // "ABCRKSPO";
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
